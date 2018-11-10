@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" manifest="lingo.manifest">
+<head>
+<title>Numero Lingo</title>
+<meta charset="UTF-8">
+<meta name="description" content="Take tests to learn foreign language numbers, counting and mental arithmetic in English, French, German, Italian, Portuguese and Spanish">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<link rel="stylesheet" href="lingo.css">
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "51098723-ae32-4e7d-b8b0-fd1dba8ba7a2", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
+</head>
+
+<body onkeypress="markAnswer(String.fromCharCode(event.which))">
+
+<div data-role="page" data-theme="a">
+
+<div data-role="header" data-position="fixed" data-tap-toggle="false">
+<div id="grpUiLang">
+	<select id="uiLang" data-inline="true" data-icon="" onchange="uiLang=this.selectedIndex; localStorage.uiLang=uiLang; changeLabels()">
+	<option selected>English</option>
+	<option>Fran&ccedil;ais</option>
+	<option>Deutsch</option>
+	<option>italiano</option>
+	<option>portugu&ecirc;s</option>
+	<option>espa&ntilde;ol</option>
+	</select>
+</div>
+<h1 class="titlebar">Numero Lingo</h1>
+<div class="ui-btn-right"><span class='st_sharethis'></span><a data-role="none" href="http://download.cnet.com/Numero-Lingo/3000-2279_4-10386734.html" target="_blank"><img src="/images/windows.png" alt="Windows version" height="16" width="16"></a></div>
+
+</div>
+
+<div data-role="content">
+
+<div class="lbl" id="topblock">
+<div class="scoreblock"><div id="lblScore" class="score"></div><div id="lblBest" class="best"></div></div><div id="lblTime" class="timeblock"></div>
+<div class="scoreblock"><div class="score" id="score">0</div><div class="best" id="topscore">0</div></div><div class="timeblock" id="progressbar"><input id="timebar" type="range" min="0" value="0" max="60" data-highlight="true" data-mini="true"></div>
+</div>
+<div id="grpQuestion"><span id="questionHeading" class="lbl"></span><span id="questionNo"></span></div>
+<a id="questionBox" data-role="button" data-mini="true"></a>
+<div class="lbl answerHeading"></div>
+
+<div id="multichoice" data-role="controlgroup">
+<a data-role="button" data-mini="true" id="choice-a">a)</a>
+<a data-role="button" data-mini="true" id="choice-b">b)</a>
+<a data-role="button" data-mini="true" id="choice-c">c)</a>
+<a data-role="button" data-mini="true" id="choice-d">d)</a>
+</div>
+
+<div id="numeric">
+<fieldset data-role="controlgroup" data-type="horizontal" data-corners="false">
+<a data-role="button">1</a>
+<a data-role="button">2</a>
+<a data-role="button">3</a>
+<a data-role="button">4</a>
+<a data-role="button">5</a>
+</fieldset>
+<fieldset data-role="controlgroup" data-type="horizontal" data-corners="false">
+<a data-role="button">6</a>
+<a data-role="button">7</a>
+<a data-role="button">8</a>
+<a data-role="button">9</a>
+<a data-role="button">0</a>
+</fieldset>
+<div id="arabicNumber"></div>
+<span id="correction"></span>
+</div>
+
+</div>
+
+<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+<div id="footer" data-role="controlgroup" data-type="horizontal">
+<a id="btnStop" data-role="button" data-inline="true" onclick="endTest()"></a>
+<a id="btnHelp" href="#helpPanel" data-inline="true" data-role="button">Help</a>
+<a id="btnOptions" href="#optionsPanel" data-inline="true" data-role="button"></a>
+</div>
+</div>
+
+<div data-role="panel" id="optionsPanel" data-position="right" data-display="overlay">
+<label for="testLang" id="lblTestLang"></label>
+<select id="testLang"></select>
+<label id="lblTestType" for="testType"></label>
+<select id="testType"></select>
+<input type="checkbox" id="useSpeech">
+<label id="lblUseSpeech" for="useSpeech"></label>
+<fieldset data-role="controlgroup" data-type="horizontal">
+<legend id="lblDifficulty"></legend>
+<label for="level0">1</label>
+<input type="radio" name="difficulty" id="level0" value="0" checked>
+<label for="level1">2</label>
+<input type="radio" name="difficulty" id="level1" value="1">
+<label for="level2">3</label>
+<input type="radio" name="difficulty" id="level2" value="2">
+<label for="level3">4</label>
+<input type="radio" name="difficulty" id="level3" value="3">
+</fieldset>
+<label id="lblDuration" for="duration"></label>
+<input type="range" id="duration" min="1" max="30" value="1">
+<a id="btnClose" data-role="button" data-mini="true" data-rel="close"></a>
+</div>
+
+<div data-role="panel" id="helpPanel" data-position="left" data-display="overlay">
+<p>This web app tests your ability to quickly translate numbers displayed in any of six languages: English, French, German, Italian, Portuguese, and Spanish. By default, the language of the user interface (the labels and messages you see on the screen) is English, but you can press the button in the top-left hand corner to change this. A test lasts for a specific time, during which each correct answer you give increments your score, whilst each incorrect answer simply wastes valuable seconds.</p>
+<p>Click the <b>Options</b> button at the bottom of the screen to open the Options panel. On this you can change the following:</p>
+<p><b>Test Language</b>: the language in which test questions and multiple-choice answers are shown. Note that this differs from the user interface language mentioned above.</p>
+<p><b>Test Type</b>: defines the format of questions and answers. Questions can be in either decimal form (for example, <b>1465</b>) or word form in the test language (for example, <b>one thousand four hundred and sixty five</b>).  Answers can be in either decimal form (where you simply type numbers) or multiple-choice word form (where you either press the answer you think is correct, or type its corresponding letter, such as 'a'). The arithmetic tests ask you to calculate the result of an addition or subtraction shown in words.</p>
+<p><b>Speak word questions</b>: Tick this box if you want questions that are in word form to be spoken to you. Note: This feature currently only works in the most recent Chrome browsers and so this option will be otherwise disabled.</p>
+<p><b>Difficulty</b> level: the length of numbers presented in the test questions.</p>
+<p><b>Test duration (minutes)</b>: how long a test lasts. By default, a test is one minute long, but you can increase this to up to 30 minutes.</p>
+<p>To start a test, press where it says "Press here to begin test". During the test, the <b>Time Left</b> is displayed as a bar.</p>
+<p>The test proceeds as follows:</p>
+<ol>
+<li>A question is shown in the <b>Question</b> box. For multiple-choice answers, either press the answer you think is correct, or type on the keyboard its corresponding letter. For decimal answers, enter the digits of the number by pressing the buttons of the displayed number pad. You do not need to press Enter. Correct digits are shown below the number pad until either you make a mistake or the answer is complete.</li>
+<li>Your answer is marked. If you are right, a blue tick is displayed by your answer and your <b>Score</b> is incremented. If you are wrong, a red cross appears by your answer, and the correct answer is indicated in green.</li>
+<li>Press the question or answer buttons to proceed to the next question.</li>
+<li>When the time runs out, the phrase <b>Test Over</b> appears in the <b>Question</b> box. If your <b>Score</b> is higher than the previous <b>Best</b>, the latter is updated.</li>
+</ol>
+<p><b>Support</b></p>
+<p>If you have any questions, criticisms or praise, then please send an e-mail to <img src="../images/context.png"></p>
+<p><b>Copyright Notice and Disclaimer</b></p>
+<p>All contents of this Numero Lingo application are Copyright &copy; 2014 Julian Wood, All Rights Reserved.</p>
+<p>Use of Numero Lingo indicates acceptance of the following, in which the Software refers to Numero Lingo.</p>
+<p><b>No Warranties</b></p>
+<p>The author of the Software expressly disclaims any warranty for the Software. The Software and any related documentation is provided "as is" without warranty of any kind, either express or implied, including, without limitation, the implied warranties or merchantability, fitness for a particular purpose, or non-infringement. The entire risk arising out of use or performance of the Software remains with you.</p>
+<p><b>No Liability for Damages</b></p>
+<p>In no event shall the author of the Software be liable for any damages whatsoever arising out of the use of or inability to use this product, even if the author of the Software has been advised of the possibility of such damages.</p>
+<p class="textcenter">Copyright &copy; 2014 Julian Wood</p>
+<hr><a data-role="button" data-mini="true" data-rel="close">Close</a>
+</div>
+
+</div>
+<script src="lingo.js"></script>
+</body>
+</html>

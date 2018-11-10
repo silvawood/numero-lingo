@@ -1,0 +1,44 @@
+@media all and (min-width:901px) {
+	body {padding: 0 25%}
+	.ui-header, .ui-footer {margin: 0 25% !important; width:50% !important}
+	body, h1.titlebar.ui-title, .ui-mini .ui-btn-inner, .ui-footer .ui-btn-inner {font-size: 24px}
+	}
+@media all and (min-width:601px) and (max-width:900px) {
+	body {padding: 0 10%}
+	.ui-header, .ui-footer {margin: 0 10% !important; width:80% !important}
+	body, h1.titlebar.ui-title, .ui-mini .ui-btn-inner, .ui-footer .ui-btn-inner {font-size: 18px}
+	}
+@media all and (max-width:600px) {
+	
+	}
+.ui-page {
+	margin: 0 auto !important;
+	position: relative !important;
+	}
+.ui-content {padding: 0 !important}
+#grpQuestion {clear:both; padding-top:0.5em; margin: 0em 1em 0.5em 1em; white-space:normal}
+#questionBox {margin: 0 1em}
+.answerHeading {margin: 1em 1em 0.5em 1em; text-align: left; min-height: 1.5em}
+.lbl {font-size: 0.9em; font-weight: bold}
+#topblock{height:3em; padding-top: 0.5em; background-color:dimgray}
+.scoreblock {width:40%; float: left; text-align: center}
+.timeblock {width:50%; float:right; text-align: center; margin-left: 5%; margin-right: 1em}
+#progressbar .ui-slider-input, #progressbar .ui-slider-handle {display: none !important}  
+#progressbar .ui-slider-track  {margin: 0; pointer-events:none}
+#progressbar .ui-slider {margin:0}
+.score, .best {width:50%; float:left; text-align: center}
+.best {width:50%; float:right; text-align: center}
+.textcenter {text-align:center}
+.ui-header .ui-title {margin-right: 10% !important; margin-left: 10% !important}
+#multichoice a  .ui-btn-text{white-space: normal}
+#multichoice .ui-btn {text-align: left; margin: 0 1em}
+#translator, #translateNo{text-align:center}
+#translation {margin-top:1em; text-align:center; word-wrap: break-word; background-color:black; border:1em solid black; border-radius: 0.5em}
+#numeric {text-align: center}
+#arabicNumber {width: 4em; height:2.3em; line-height:2.3em; display: inline-block; background-color:black; border:1px solid black; border-radius: 0.5em; margin-top: 0.5em; overflow: hidden}
+#correction {position: absolute; width: 4em; margin-top: 1.1em}
+#grpUiLang {position: absolute}
+#footer {text-align: center}
+#helpPanel p, ol{font-size:0.7em}
+#windows {float: right}
+p img {position: relative; top: 3px}
